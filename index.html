@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonshine Craft — Домашнее самогоноварение</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+      (function() {
+        var t = localStorage.getItem('moonshine-theme');
+        if (t === 'steel' || t === 'brown') document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap">
+            <div class="logo-block">
+                <a href="./" class="logo">Moonshine Craft</a>
+                <span class="slogan">Честный перегон. Для своих.</span>
+            </div>
+            <nav class="nav">
+                <span class="theme-switcher" role="group" aria-label="Тема оформления">
+                    <button type="button" class="theme-btn active" data-theme="brown" title="Коричневый / медный">Коричневый</button>
+                    <button type="button" class="theme-btn" data-theme="steel" title="Стальной / медный">Стальной</button>
+                </span>
+                <a href="#philosophy">О философии</a>
+                <a href="#for-whom">Для своих</a>
+                <a href="#calculators">Калькуляторы</a>
+                <a href="#about">О проекте</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="banner" aria-label="MoonShine Craft — честный перегон для своих">
+        <picture>
+            <source media="(max-width: 640px)" srcset="assets/images/banner-smart.png">
+            <img src="assets/images/banner.png" alt="MoonShine Craft. Честный перегон. Для своих. Домашнее самогоноварение." class="banner-img">
+        </picture>
+    </section>
+
+    <section class="hero">
+        <div class="wrap">
+            <p class="hero-tagline">Крафтовый проект о культуре домашнего перегона, уважении к процессу и традициях, которые не делаются на показ.</p>
+            <div class="hero-buttons">
+                <a href="#philosophy" class="btn btn-primary">О философии</a>
+                <a href="#for-whom" class="btn btn-secondary">Для своих</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="about" class="content-section">
+            <h2 class="section-title">Что такое Moonshine Craft?</h2>
+            <p class="section-lead">Moonshine Craft — это не про массовость и не про витрину.<br>
+            Это про аккуратный подход, внимание к деталям и ответственность перед теми, кому ты наливаешь.</p>
+            <p>Мы ценим процесс, чистоту, терпение и тишину ночи.<br>
+            Здесь нет случайных людей — только свои.</p>
+        </section>
+
+        <section id="philosophy" class="content-section">
+            <h2 class="section-title">Наша философия</h2>
+            <div class="philosophy-cards">
+                <article class="philosophy-card">
+                    <h3>Честно</h3>
+                    <p>Без спешки, без лишнего, без компромиссов с качеством.</p>
+                </article>
+                <article class="philosophy-card">
+                    <h3>Осознанно</h3>
+                    <p>Мы уважаем процесс, традиции и тех, кто рядом.</p>
+                </article>
+                <article class="philosophy-card">
+                    <h3>Для своих</h3>
+                    <p>То, что делается здесь, не требует рекламы.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="atmospheric" aria-label="Атмосфера">
+            <div class="atmospheric-inner">
+                <p class="atmospheric-text">Когда город спит,<br>медь нагревается,<br>пар поднимается,<br>а время замедляется.</p>
+                <p class="atmospheric-brand">Moonshine Craft</p>
+            </div>
+        </section>
+
+        <section id="for-whom" class="content-section">
+            <h2 class="section-title">Для кого Moonshine Craft</h2>
+            <p class="section-lead">Для тех, кто ценит процесс, а не показ</p>
+            <ul class="for-whom-list">
+                <li>Для друзей, которым важно доверие</li>
+                <li>Для тех, кто выбирает качество вместо количества</li>
+                <li>Для тех, кто понимает без лишних слов</li>
+            </ul>
+        </section>
+
+        <section id="calculators" class="content-section">
+            <h2 class="section-title">Калькуляторы</h2>
+            <div class="calculators">
+            <article class="calc-card">
+                <h3><span class="icon">💧</span> Разбавление спирта</h3>
+                <p class="description">Сколько воды добавить, чтобы получить нужную крепость.</p>
+                <div class="form-group">
+                    <label for="dil-volume">Объём спирта, л</label>
+                    <input type="number" id="dil-volume" step="0.1" min="0" placeholder="1.0">
+                </div>
+                <div class="form-group">
+                    <label for="dil-abv-current">Текущая крепость, %</label>
+                    <input type="number" id="dil-abv-current" step="0.1" min="0" max="100" placeholder="96">
+                </div>
+                <div class="form-group">
+                    <label for="dil-abv-target">Целевая крепость, %</label>
+                    <input type="number" id="dil-abv-target" step="0.1" min="0" max="100" placeholder="40">
+                </div>
+                <p class="result-label">Результат:</p>
+                <div id="dil-result" class="calc-result" role="status" aria-live="polite"></div>
+            </article>
+
+            <article class="calc-card">
+                <h3><span class="icon">🍬</span> Сахар → спирт</h3>
+                <p class="description">Теоретический выход спирта из сахара (при полном сбраживании).</p>
+                <div class="form-group">
+                    <label for="sugar-kg">Сахар, кг</label>
+                    <input type="number" id="sugar-kg" step="0.1" min="0" placeholder="5">
+                </div>
+                <div class="form-group">
+                    <label for="sugar-volume">Объём браги, л (опционально)</label>
+                    <input type="number" id="sugar-volume" step="0.1" min="0" placeholder="25">
+                </div>
+                <p class="result-label">Результат:</p>
+                <div id="sugar-result" class="calc-result" role="status" aria-live="polite"></div>
+            </article>
+
+            <article class="calc-card">
+                <h3><span class="icon">📐</span> Крепость по ареометру</h3>
+                <p class="description">Крепость браги по начальной и конечной плотности.</p>
+                <div class="form-group">
+                    <label for="hyd-og">Начальная плотность (OG)</label>
+                    <input type="number" id="hyd-og" step="0.001" min="1" max="1.2" placeholder="1.080">
+                </div>
+                <div class="form-group">
+                    <label for="hyd-fg">Конечная плотность (FG)</label>
+                    <input type="number" id="hyd-fg" step="0.001" min="0.99" max="1.1" placeholder="1.000">
+                </div>
+                <p class="result-label">Результат:</p>
+                <div id="hyd-result" class="calc-result" role="status" aria-live="polite"></div>
+            </article>
+
+            <article class="calc-card">
+                <h3><span class="icon">🧪</span> Чистый спирт</h3>
+                <p class="description">Сколько чистого спирта (100%) в данном объёме напитка.</p>
+                <div class="form-group">
+                    <label for="pa-volume">Объём, л</label>
+                    <input type="number" id="pa-volume" step="0.1" min="0" placeholder="1.0">
+                </div>
+                <div class="form-group">
+                    <label for="pa-abv">Крепость, %</label>
+                    <input type="number" id="pa-abv" step="0.1" min="0" max="100" placeholder="40">
+                </div>
+                <p class="result-label">Результат:</p>
+                <div id="pa-result" class="calc-result" role="status" aria-live="polite"></div>
+            </article>
+            </div>
+        </section>
+
+        <section id="disclaimer" class="content-section disclaimer-block">
+            <h2 class="section-title">Что важно знать</h2>
+            <p>Moonshine Craft — это личный проект и сообщество по интересам.<br>
+            Мы не занимаемся продажей продукции и не призываем к употреблению.<br>
+            Здесь — эстетика, культура и философия ремесла.</p>
+        </section>
+
+        <section class="manifest-block" aria-label="Манифест">
+            <div class="manifest-inner">
+                <p>Мы не гоним — мы выжидаем.</p>
+                <p>Мы не делаем для всех — только для своих.</p>
+                <p>Мы не говорим громко — за нас говорит результат.</p>
+                <p class="manifest-brand">Moonshine Craft.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p class="footer-brand">Moonshine Craft</p>
+            <p class="footer-slogan">Честный перегон. Для своих.</p>
+            <p class="footer-copy">© Private Craft Project</p>
+            <p class="footer-legal">Not for sale. Not for everyone.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/calculators.js"></script>
+</body>
+</html>
