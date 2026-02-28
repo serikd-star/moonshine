@@ -1,0 +1,565 @@
+/* Moonshine — портал домашнего самогоноварения */
+:root {
+  --bg-dark: #16120d;
+  --bg-card: #1e1914;
+  --bg-card-hover: #262019;
+  --copper: #c47842;
+  --copper-light: #e09a5f;
+  --amber: #d4a84b;
+  --cream: #f2ebe0;
+  --cream-muted: #a99f91;
+  --border: #3d352b;
+  --radius: 12px;
+  --font-head: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --hero-glow: rgba(196, 120, 66, 0.12);
+  --accent-glow: rgba(196, 120, 66, 0.3);
+  --result-bg: rgba(196, 120, 66, 0.12);
+  --result-border: rgba(196, 120, 66, 0.3);
+  --header-bg-from: rgba(30, 25, 20, 0.98);
+  --header-bg-to: rgba(22, 18, 13, 0.95);
+}
+
+/* Тема: стальной / медный */
+[data-theme="steel"] {
+  --bg-dark: #14181e;
+  --bg-card: #1a2028;
+  --bg-card-hover: #222a34;
+  --copper: #c47842;
+  --copper-light: #e09a5f;
+  --amber: #d4a84b;
+  --cream: #e6e8eb;
+  --cream-muted: #8b929a;
+  --border: #3d4550;
+  --hero-glow: rgba(196, 120, 66, 0.15);
+  --accent-glow: rgba(196, 120, 66, 0.35);
+  --result-bg: rgba(196, 120, 66, 0.1);
+  --result-border: rgba(196, 120, 66, 0.35);
+  --header-bg-from: rgba(26, 32, 40, 0.98);
+  --header-bg-to: rgba(20, 24, 30, 0.95);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--cream);
+  background: var(--bg-dark);
+  min-height: 100vh;
+}
+
+/* Типографика */
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--cream);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 0.02em; }
+h2 { font-size: 1.6rem; margin-top: 0; margin-bottom: 1rem; color: var(--amber); }
+h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+a {
+  color: var(--copper-light);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; color: var(--amber); }
+
+/* Шапка */
+.site-header {
+  background: linear-gradient(180deg, var(--header-bg-from) 0%, var(--header-bg-to) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.site-header .wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.logo {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+}
+
+.site-header .slogan {
+  font-size: 0.85rem;
+  color: var(--cream-muted);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  font-size: 0.95rem;
+}
+
+.theme-switcher {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.theme-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--cream-muted);
+  background: var(--bg-card);
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.theme-btn:hover {
+  color: var(--cream);
+  background: var(--bg-card-hover);
+}
+
+.theme-btn.active {
+  color: var(--amber);
+  background: var(--result-bg);
+  border: 1px solid var(--result-border);
+  margin: -1px;
+}
+
+.theme-btn + .theme-btn {
+  border-left: 1px solid var(--border);
+}
+
+/* Баннер — изображение целиком, без обрезки */
+.banner {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+/* Hero */
+.hero {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--hero-glow) 0%, transparent 60%);
+}
+
+.hero .wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-tagline {
+  font-size: 1.15rem;
+  color: var(--cream-muted);
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+  color: var(--bg-dark);
+  background: var(--amber);
+  border: 1px solid var(--amber);
+}
+
+.btn-primary:hover {
+  background: var(--copper-light);
+  border-color: var(--copper-light);
+  color: var(--bg-dark);
+}
+
+.btn-secondary {
+  color: var(--amber);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--copper);
+  color: var(--copper-light);
+}
+
+/* Контентные секции */
+.content-section {
+  margin-top: 3rem;
+}
+
+.content-section:first-of-type {
+  margin-top: 0;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 1rem;
+  max-width: 60ch;
+}
+
+.content-section p {
+  color: var(--cream-muted);
+  max-width: 60ch;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* Философия — карточки */
+.philosophy-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.philosophy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.philosophy-card:hover {
+  border-color: var(--result-border);
+}
+
+.philosophy-card h3 {
+  font-size: 1.25rem;
+  color: var(--amber);
+  margin: 0 0 0.5rem 0;
+}
+
+.philosophy-card p {
+  font-size: 0.95rem;
+  color: var(--cream-muted);
+  margin: 0;
+  max-width: none;
+}
+
+/* Атмосферный блок */
+.atmospheric {
+  margin-top: 3rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(180deg, var(--hero-glow) 0%, transparent 50%);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.atmospheric-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.atmospheric-text {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.8;
+  margin: 0 0 1.5rem 0;
+}
+
+.atmospheric-brand {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Для кого */
+.for-whom-list {
+  color: var(--cream-muted);
+  margin: 1rem 0 0 1.25rem;
+  padding: 0;
+  max-width: 50ch;
+}
+
+.for-whom-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* Блок «Что важно знать» */
+.disclaimer-block {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.disclaimer-block p {
+  margin-bottom: 0.5rem;
+}
+
+.disclaimer-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Мини-манифест */
+.manifest-block {
+  margin-top: 3rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.manifest-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.manifest-inner p {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  color: var(--cream-muted);
+  margin: 0.5rem 0;
+  font-style: italic;
+}
+
+.manifest-brand {
+  font-style: normal !important;
+  font-size: 1.35rem !important;
+  color: var(--amber) !important;
+  margin-top: 1.25rem !important;
+  letter-spacing: 0.05em;
+}
+
+/* Контент */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  color: var(--amber);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Калькуляторы — сетка карточек */
+.calculators {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.calc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.calc-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-glow);
+}
+
+.calc-card h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calc-card h3 .icon {
+  font-size: 1.4rem;
+  opacity: 0.9;
+}
+
+.calc-card .description {
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+  margin-bottom: 1.25rem;
+  min-height: 2.5em;
+}
+
+/* Формы */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+  margin-bottom: 0.35rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--cream);
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--copper);
+  box-shadow: 0 0 0 2px rgba(196, 120, 66, 0.2);
+}
+
+.form-group input::placeholder {
+  color: var(--cream-muted);
+  opacity: 0.7;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+  margin: 1rem 0 0.35rem 0;
+  font-weight: 600;
+}
+
+.calc-result {
+  margin-top: 0;
+  min-height: 3.5rem;
+  padding: 1rem;
+  background: var(--result-bg);
+  border: 1px solid var(--result-border);
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--amber);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calc-result .value {
+  font-size: 1.25rem;
+  color: var(--copper-light);
+}
+
+.calc-result .hint {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--cream-muted);
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+/* Футер */
+.site-footer {
+  margin-top: 4rem;
+  padding: 2.5rem 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+}
+
+.site-footer .wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+  margin: 0 0 0.25rem 0;
+}
+
+.footer-slogan {
+  font-style: italic;
+  margin: 0 0 1rem 0;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0.15rem 0;
+}
+
+.footer-legal {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+  .site-header .wrap { padding: 0; }
+  .nav a { margin-left: 1rem; }
+  .hero { padding: 2.5rem 1rem; }
+  .hero-buttons { flex-direction: column; }
+  .btn { width: 100%; text-align: center; }
+  main { padding: 1rem; }
+  .calculators { grid-template-columns: 1fr; }
+  .atmospheric { padding: 2rem 1rem; }
+  .atmospheric-text { font-size: 1.15rem; }
+  .manifest-block { padding: 2rem 1rem; }
+}
